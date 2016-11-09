@@ -259,3 +259,4 @@ extfs.isEmpty(static_dir, function (empty) {
         });
     });
 });
+
