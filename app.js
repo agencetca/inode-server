@@ -26,6 +26,7 @@ platform.middlewares = {};
 platform.servers = [];
 platform['third-part-servers'] = [];
 platform.default_port = 3000; //DEFAULT PORT
+if(!platform.config['static-root']) platform.config['static-root'] = 'static'; //DEFAULT STATIC FOLDER
 
 var static_enabled;
 var msg = '';
@@ -253,7 +254,6 @@ extfs.isEmpty(static_dir, function (empty) {
                 } else {
                     start();
                 }
-
 
             });
         });
