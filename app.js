@@ -1,7 +1,8 @@
 'use strict'
 
 var http = require('http');
-var fs = require('fs-extra');
+var fs = require('fs');
+var fse = require('fs-extra');
 var path = require('path');
 var net = require('net');
 var recursive = require('recursive-readdir');
@@ -20,8 +21,12 @@ const extfs = require('extfs');
 const request = require('request');
 const concat = require('concat-stream');
 
-if(!fs.existsSync('./config.json')) {
-    fs.copySync('./examples/config.json', './config.json')
+if(!fse.existsSync('./config.json')) {
+    fse.copySync('./examples/config.json', './config.json')
+};
+
+if(!fse.existsSync('./system')) {
+    fse.mkdirsSync('./system')
 };
 
 var platform = {};
