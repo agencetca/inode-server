@@ -24,6 +24,7 @@
     "figlet": "^1.2.0",
     "findit": "^2.0.0",
     "format-json": "^1.0.3",
+    "fs-extra": "^1.0.0",
     "guid": "0.0.12",
     "http": "0.0.0",
     "http-proxy": "^1.15.1",
