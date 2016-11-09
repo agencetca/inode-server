@@ -2,4 +2,4 @@ node_modules/
 system/*
 servers/
 static/*
-./config.json
+*.json
