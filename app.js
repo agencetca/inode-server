@@ -21,16 +21,16 @@ const extfs = require('extfs');
 const request = require('request');
 const concat = require('concat-stream');
 
-if(!fse.existsSync('./config.json')) {
-    fse.copySync('./examples/config.json', './config.json')
+if(!fse.existsSync('./config.json')) { //Let ./ and NOT __dirname
+    fse.copySync('./examples/config.json', './config.json');//Let ./ and NOT __dirname
 };
 
-if(!fse.existsSync('./system')) {
-    fse.mkdirsSync('./system')
+if(!fse.existsSync(__dirname+'/system')) {
+    fse.mkdirsSync(__dirname+'/system')
 };
 
 var platform = {};
-platform.config = require('./config.json');
+platform.config = require(__dirname+'/config.json');
 platform.middlewares = {};
 platform.servers = [];
 platform['third-part-servers'] = [];
