@@ -170,7 +170,7 @@ if(platform.config && platform.config['third-part-servers']) {
                     var item = items[i];
                     if(platform.config['third-part-servers'].indexOf(item) > -1){
                         log('Launching third-part server "'+item+'" (unknown port, look in "'+third_part_servers_dir+'/'+item+'")');
-                        exec('node '+third_part_servers_dir+'/'+items[i], (err, stdout, stderr) => {
+                        exec('node '+third_part_servers_dir+'/'+item, (err, stdout, stderr) => {
                             if(err) {
                                 error('Failure [exec third-part server "'+item+'"] '+err);
                                 console.log(colors.red('Failure [exec third-part server "'+item+'"] '));
