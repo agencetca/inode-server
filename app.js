@@ -9,17 +9,17 @@ var recursive = require('recursive-readdir');
 var express = require('express');
 var bodyParser = require('body-parser');
 var jsonfile = require('jsonfile')
-const exec = require('child_process').exec;
-const spawn = require('child_process').spawn;
-const os = require('os');
-const dns = require('dns');
-const json = require('format-json');
-const Console = require('console').Console;
-const colors = require('colors')
-const figlet = require('figlet');
-const extfs = require('extfs');
-const request = require('request');
-const concat = require('concat-stream');
+var exec = require('child_process').exec;
+var spawn = require('child_process').spawn;
+var os = require('os');
+var dns = require('dns');
+var json = require('format-json');
+var Console = require('console').Console;
+var colors = require('colors')
+var figlet = require('figlet');
+var extfs = require('extfs');
+var request = require('request');
+var concat = require('concat-stream');
 
 if(!fse.existsSync('./config.json')) { //Let ./ and NOT __dirname
     fse.copySync('./examples/config.json', './config.json');//Let ./ and NOT __dirname
@@ -77,15 +77,15 @@ var display = function(name,callback, title) {
 }
 
 //Logs
-const logStream = fs.createWriteStream(__dirname+'/system/inode.log');
-const logger = new Console(logStream,logStream);
-const log = function() {
+var logStream = fs.createWriteStream(__dirname+'/system/inode.log');
+var logger = new Console(logStream,logStream);
+var log = function() {
     logger.log('['+new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '')+']',colors.green.apply(true,arguments));
 }
-const warn = function() {
+var warn = function() {
     logger.warn('['+new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '')+']',colors.yellow.apply(true,arguments));
 }
-const error = function() {
+var error = function() {
     logger.error('['+new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '')+']',colors.red.apply(true,arguments));
 }
 
