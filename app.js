@@ -51,7 +51,8 @@ var routes_dir = __dirname+'/routes';
 var use_dir = __dirname+'/use';
 
 var app = express();
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 var DISPLAY_FLAG = (process.argv[2] !== 'false') ? true : false;
 var display = function(name,callback, title) {
