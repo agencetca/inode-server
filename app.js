@@ -130,6 +130,7 @@ fs.access(middlewares_dir, fs.F_OK, function(err) {
                         error('Failure [require middleware "'+item+'"] '+e);
                         display('Middleware', function() {
                             console.log(colors.red("Middleware error : "+middlewares.shift()));
+                            console.log(colors.red("Middleware error : "+e));
                         });
                     }
                 }
@@ -154,6 +155,7 @@ fs.access(routes_dir, fs.F_OK, function(err) {
                         error('Failure [require route "'+item+'"] '+e);
                         display('Route', function() {
                             console.log(colors.red("Route error : "+routes.shift()));
+                            console.log(colors.red("Route error : "+e));
                         });
                     }
                 }
