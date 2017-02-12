@@ -20,6 +20,8 @@ var figlet = require('figlet');
 var extfs = require('extfs');
 var request = require('request');
 var concat = require('concat-stream');
+var server = require('http').createServer();
+var WebSocketServer = require('ws').Server;
 
 if(!fse.existsSync('./config.json')) { //Let ./ and NOT __dirname
     fse.copySync('./examples/config.json', './config.json');//Let ./ and NOT __dirname
@@ -212,11 +214,37 @@ if(platform.config && platform.config.servers) {
 }
 
 function start() {
-    //Start the server
-    
-    app.listen(platform.config.port);  //listen
-    log('Started inode "'+platform.config.name+'" at address localhost:'+ platform.config.port);
-    console.log(msg);
+
+    //Link the server to the express app
+    server.on('request', app);
+
+    //Configure the websocket (http upgrade)
+    var clients = [];
+    var wss = new WebSocketServer({server:server});
+    add_msg(colors.green('Websocket active at address localhost:'+ platform.config.port));
+
+    wss.on('connection', function(ws) {
+        clients.push(ws);
+        ws.on('message', function(message) {
+            ws.send("Hello, I'm Marvin. I'm still in development.");//TODO
+        });
+    });
+
+    wss.on('open', function(ws) {
+	  console.log("Marvin is active.");
+    });
+
+    wss.on('error', function(error) {
+	  //throw("Marvin encounter a connectivity problem."); //TODO could not test it at time of coding
+    });
+
+    //Start the http server 
+    server.listen(platform.config.port, function() {
+        log('Started inode "'+platform.config.name+'" at address localhost:'+ platform.config.port);
+        log('Websocket active at address localhost:'+ platform.config.port);
+        console.log(msg);
+    });
+
 }
 
 //Enable static content
